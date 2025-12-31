@@ -1,0 +1,85 @@
+Title: Design and Implementation of a Secure Enterprise Network Using pfSense Firewall, IDS/IPS, and Access Control
+
+This project focuses on the design and implementation of a secure enterprise network architecture using a pfSense firewall, Intrusion Detection and Prevention Systems (IDS/IPS), and strict access control mechanisms. The network infrastructure is logically segmented into three security zones—WAN, DMZ, and LAN—in accordance with industry best practices for enterprise network security.
+
+
+1. pfSense Firewall Installation and Network Segmentation
+
+- Install and configure the pfSense firewall.
+
+- Create and configure three network interfaces:
+
+	- WAN (External Network)
+
+	- DMZ (Demilitarized Zone)
+
+	- LAN (Internal Secure Network)
+
+- Firewall Rule Configuration
+
+	- Allow traffic from WAN to DMZ for HTTP and HTTPS services only.
+
+	- Block all traffic from WAN to LAN.
+
+	- Block all traffic from DMZ to LAN, except database service access from the web server.
+
+
+2. Web Server Deployment in the DMZ
+
+- Deploy and configure a web server within the DMZ network.
+
+- Access the web application using the URL:	
+	http://todo.sunbeam.local
+
+- Configure internal DNS resolution for todo.sunbeam.local using pfSense.
+
+- Generate and configure an SSL/TLS certificate to enable secure access over HTTPS:
+	https://todo.sunbeam.local
+
+
+3. Database Server Deployment in the LAN
+
+- Deploy the database server within the LAN network.
+
+- Configure firewall rules to allow database connections only from the DMZ-based web server.
+
+- Block all other internal and external access to the database server to ensure data security.
+
+
+4. Network Monitoring Using Nagios
+
+- Install and configure Nagios for infrastructure monitoring.
+
+	- Add the web server and database server as monitored hosts.
+
+	- Configure service checks to monitor:
+
+		- Server availability
+
+		- Resource usage (CPU, memory, disk)
+
+		- Service health
+
+		- HTTP and HTTPS services
+
+
+5. Intrusion Detection and Prevention
+
+- Install and configure Snort as an Intrusion Detection System (IDS) on the database server.
+
+- Enable and tune relevant rule sets to detect and prevent malicious activities targeting database services.
+
+- Examples of detected attacks include:
+
+	- Denial of Service (DoS) attacks
+
+	- Ping of Death attacks
+
+
+6. Attack Simulation and Log Analysis
+
+- Launch simulated attacks from a Kali Linux machine targeting the web server and database server.
+
+- Observe, analyze, and verify the generated alerts and logs on the Snort-enabled database server.
+
+- Validate the effectiveness of IDS rules by correlating attack attempts with detected events in Snort logs.
